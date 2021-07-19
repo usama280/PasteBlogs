@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>EmbeddingRandomForest | PasteBlogs</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="EmbeddingRandomForest" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="A blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://usama280.github.io/PasteBlogs/2021/07/18/EmbeddingRandomForest.html" />
+<meta property="og:url" content="https://usama280.github.io/PasteBlogs/2021/07/18/EmbeddingRandomForest.html" />
+<meta property="og:site_name" content="PasteBlogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-18T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A blogging platform with support for Jupyter Notebooks.","url":"https://usama280.github.io/PasteBlogs/2021/07/18/EmbeddingRandomForest.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://usama280.github.io/PasteBlogs/2021/07/18/EmbeddingRandomForest.html"},"headline":"EmbeddingRandomForest","dateModified":"2021-07-18T00:00:00-05:00","datePublished":"2021-07-18T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/PasteBlogs/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://usama280.github.io/PasteBlogs/feed.xml" title="PasteBlogs" /><link rel="shortcut icon" type="image/x-icon" href="/PasteBlogs/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/PasteBlogs/">PasteBlogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/PasteBlogs/about/">About Me</a><a class="page-link" href="/PasteBlogs/search/">Search</a><a class="page-link" href="/PasteBlogs/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">EmbeddingRandomForest</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-18T00:00:00-05:00" itemprop="datePublished">
+        Jul 18, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/usama280/PasteBlogs/tree/master/_notebooks/EmbeddingRandomForest.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/PasteBlogs/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/usama280/PasteBlogs/master?filepath=_notebooks%2FEmbeddingRandomForest.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/usama280/PasteBlogs/blob/master/_notebooks/EmbeddingRandomForest.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/EmbeddingRandomForest.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-Forest-with-Embeddings">Random Forest with Embeddings<a class="anchor-link" href="#Random-Forest-with-Embeddings"> </a></h2><p>So far we have created both a random forest and a NN to do tabular modeling. One thing intresting about a NN is that it contains embeddings. Why don't we try to use these embeddings from the Neural Network in Random Forests? Will it improve the random forest? Lets find out!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Unzipping-data">Unzipping data<a class="anchor-link" href="#Unzipping-data"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="n">z</span><span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;bluebook-for-bulldozers.zip&#39;</span><span class="p">)</span> <span class="c1">#unzip first</span>
+<span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span> <span class="c1">#extract</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Grabbing-the-Data">Grabbing the Data<a class="anchor-link" href="#Grabbing-the-Data"> </a></h2><p>Similer to what we did in lesson 9, we will grab our data, set the ordinal var, and feature engineer the date.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_nn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">()</span><span class="o">/</span><span class="s1">&#39;TrainAndValid.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1">#Data</span>
+
+<span class="c1">#Set ordinal variables using our order</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="s1">&#39;Large&#39;</span><span class="p">,</span><span class="s1">&#39;Large / Medium&#39;</span><span class="p">,</span><span class="s1">&#39;Medium&#39;</span><span class="p">,</span><span class="s1">&#39;Small&#39;</span><span class="p">,</span><span class="s1">&#39;Mini&#39;</span><span class="p">,</span><span class="s1">&#39;Compact&#39;</span>
+<span class="n">df_nn</span><span class="p">[</span><span class="s1">&#39;ProductSize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_nn</span><span class="p">[</span><span class="s1">&#39;ProductSize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df_nn</span><span class="p">[</span><span class="s1">&#39;ProductSize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">dep_var</span> <span class="o">=</span> <span class="s1">&#39;SalePrice&#39;</span>
+<span class="n">df_nn</span><span class="p">[</span><span class="n">dep_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_nn</span><span class="p">[</span><span class="n">dep_var</span><span class="p">])</span> <span class="c1">#remember we need to take log of the label (Kaggle requires)</span>
+
+<span class="n">df_nn</span> <span class="o">=</span> <span class="n">add_datepart</span><span class="p">(</span><span class="n">df_nn</span><span class="p">,</span> <span class="s1">&#39;saledate&#39;</span><span class="p">)</span> <span class="c1">#Also remember that we used feature engineering on date </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continous-and-Categorical-columns">Continous and Categorical columns<a class="anchor-link" href="#Continous-and-Categorical-columns"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cont_nn</span><span class="p">,</span><span class="n">cat_nn</span> <span class="o">=</span> <span class="n">cont_cat_split</span><span class="p">(</span><span class="n">df_nn</span><span class="p">,</span> <span class="n">max_card</span><span class="o">=</span><span class="mi">9000</span><span class="p">,</span> <span class="n">dep_var</span><span class="o">=</span><span class="n">dep_var</span><span class="p">)</span> <span class="c1">#Max_card makes it so that any col with more than</span>
+                                                                            <span class="c1"># 9000 lvls, it will be treated as cont</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cont_nn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;SalesID&#39;, &#39;MachineID&#39;, &#39;auctioneerID&#39;, &#39;MachineHoursCurrentMeter&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that it's missing saleElpased from the cont_nn. We need to add this as we want this col to be treated as cont.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cont_nn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;saleElapsed&#39;</span><span class="p">)</span>
+<span class="n">cont_nn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;SalesID&#39;,
+ &#39;MachineID&#39;,
+ &#39;auctioneerID&#39;,
+ &#39;MachineHoursCurrentMeter&#39;,
+ &#39;saleElapsed&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cat_nn</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;saleElapsed&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_nn</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="s1">&#39;saleElapsed&#39;</span><span class="p">]</span> <span class="c1">#must change to int as an object type will cause error</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>dtype(&#39;O&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_nn</span><span class="p">[</span><span class="s1">&#39;saleElapsed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_nn</span><span class="p">[</span><span class="s1">&#39;saleElapsed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Split">Split<a class="anchor-link" href="#Split"> </a></h3><p>We want to split our data by date, not randomly.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_nn</span><span class="o">.</span><span class="n">saleYear</span><span class="o">&lt;</span><span class="mi">2011</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_nn</span><span class="o">.</span><span class="n">saleMonth</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">train_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span> <span class="n">cond</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">valid_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">cond</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">splits</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_idx</span><span class="p">),</span><span class="nb">list</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Tabular-object">Tabular object<a class="anchor-link" href="#Tabular-object"> </a></h2><p>Now that we have everything we need, lets create our tabular object.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">procs_nn</span> <span class="o">=</span> <span class="p">[</span><span class="n">Categorify</span><span class="p">,</span> <span class="n">FillMissing</span><span class="p">,</span> <span class="n">Normalize</span><span class="p">]</span>
+
+<span class="n">to_nn</span> <span class="o">=</span> <span class="n">TabularPandas</span><span class="p">(</span><span class="n">df_nn</span><span class="p">,</span> <span class="n">procs_nn</span><span class="p">,</span> <span class="n">cat_nn</span><span class="p">,</span> <span class="n">cont_nn</span><span class="p">,</span> <span class="n">splits</span><span class="o">=</span><span class="n">splits</span><span class="p">,</span> <span class="n">y_names</span><span class="o">=</span><span class="n">dep_var</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">to_nn</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span> <span class="c1">#minibatches</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">to_nn</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">y</span>
+<span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(8.465899, 11.863583)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training">Training<a class="anchor-link" href="#Training"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">tabular_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">250</span><span class="p">],</span>
+                        <span class="n">n_out</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">)</span>
+
+<span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span> <span class="c1">#find best lr</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SuggestedLRs(lr_min=0.0033113110810518267, lr_steep=0.00019054606673307717)</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">)</span> <span class="c1">#train</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.058050</td>
+      <td>0.054965</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.047368</td>
+      <td>0.052232</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.041544</td>
+      <td>0.050312</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.035930</td>
+      <td>0.049067</td>
+      <td>00:14</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.031330</td>
+      <td>0.049272</td>
+      <td>00:14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">r_mse</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">pred</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">m_rmse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span> <span class="k">return</span> <span class="n">r_mse</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preds</span><span class="p">,</span><span class="n">targs</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">()</span>
+<span class="n">r_mse</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span><span class="n">targs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.221972</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This is actually very good</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest"> </a></h2><p>Lets now create our random forest and compare it to our NN</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tabular-object">Tabular object<a class="anchor-link" href="#Tabular-object"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">procs</span> <span class="o">=</span> <span class="p">[</span><span class="n">Categorify</span><span class="p">,</span> <span class="n">FillMissing</span><span class="p">]</span>
+<span class="n">rf_to</span> <span class="o">=</span> <span class="n">TabularPandas</span><span class="p">(</span><span class="n">df_nn</span><span class="p">,</span> <span class="n">procs</span><span class="p">,</span> <span class="n">cat_nn</span><span class="p">,</span> <span class="n">cont_nn</span><span class="p">,</span> <span class="n">y_names</span><span class="o">=</span><span class="n">dep_var</span><span class="p">,</span> <span class="n">splits</span><span class="o">=</span><span class="n">splits</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">xs</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">rf_to</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span><span class="n">rf_to</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">y</span> 
+<span class="n">valid_xs</span><span class="p">,</span><span class="n">valid_y</span> <span class="o">=</span> <span class="n">rf_to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">xs</span><span class="p">,</span><span class="n">rf_to</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rf</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="mi">200_000</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span>
+                                <span class="n">max_samples</span><span class="o">=</span><span class="n">max_samples</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span>
+                                <span class="n">min_samples_leaf</span><span class="o">=</span><span class="n">min_samples_leaf</span><span class="p">,</span> <span class="n">oob_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">rf</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">#Fitting</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m_rmse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">m_rmse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">valid_xs</span><span class="p">,</span> <span class="n">valid_y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.171432, 0.233555)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>So it seems our random forest preformed worse in comparison to the NN. Let's improve this by adding the NN embeddings!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Adding-embeddings">Adding embeddings<a class="anchor-link" href="#Adding-embeddings"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">embeds</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="c1">#These are just some of the embedding within the NN</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ModuleList(
+  (0): Embedding(54, 15)
+  (1): Embedding(5242, 194)
+  (2): Embedding(7, 5)
+  (3): Embedding(73, 18)
+  (4): Embedding(4, 3)
+)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>The function below extracts the embeddings from the model</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">embed_features</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">xs</span><span class="p">):</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">cat_names</span><span class="p">):</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">embeds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+        <span class="n">new_feat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">emb</span><span class="p">(</span><span class="n">tensor</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">xs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">emb</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">)])</span>
+        <span class="n">xs</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">new_feat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">embeded_xs</span> <span class="o">=</span> <span class="n">embed_features</span><span class="p">(</span><span class="n">learn</span><span class="p">,</span> <span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">xs_valid</span> <span class="o">=</span> <span class="n">embed_features</span><span class="p">(</span><span class="n">learn</span><span class="p">,</span> <span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">valid</span><span class="o">.</span><span class="n">xs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">embeded_xs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">xs_valid</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((404710, 907), (7988, 907))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fitting-embeddings">Fitting embeddings<a class="anchor-link" href="#Fitting-embeddings"> </a></h3><p>Now that we have our embeddings, lets fit it into the random forest.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">rf</span><span class="p">(</span><span class="n">embeded_xs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1">#Fitting</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m_rmse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">embeded_xs</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">m_rmse</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">xs_valid</span><span class="p">,</span> <span class="n">valid_y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0.14817, 0.228745)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>It seems that adding the NN embeddings improves the random forest!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/PasteBlogs/2021/07/18/EmbeddingRandomForest.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/PasteBlogs/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/PasteBlogs/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
