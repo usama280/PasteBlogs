@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Lesson 12 - FastAI | PasteBlogs</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Lesson 12 - FastAI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="A blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://usama280.github.io/PasteBlogs/2021/07/21/Lesson12-nlp_dive.html" />
+<meta property="og:url" content="https://usama280.github.io/PasteBlogs/2021/07/21/Lesson12-nlp_dive.html" />
+<meta property="og:site_name" content="PasteBlogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-21T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A blogging platform with support for Jupyter Notebooks.","url":"https://usama280.github.io/PasteBlogs/2021/07/21/Lesson12-nlp_dive.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://usama280.github.io/PasteBlogs/2021/07/21/Lesson12-nlp_dive.html"},"headline":"Lesson 12 - FastAI","dateModified":"2021-07-21T00:00:00-05:00","datePublished":"2021-07-21T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/PasteBlogs/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://usama280.github.io/PasteBlogs/feed.xml" title="PasteBlogs" /><link rel="shortcut icon" type="image/x-icon" href="/PasteBlogs/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/PasteBlogs/">PasteBlogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/PasteBlogs/about/">About Me</a><a class="page-link" href="/PasteBlogs/search/">Search</a><a class="page-link" href="/PasteBlogs/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lesson 12 - FastAI</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-21T00:00:00-05:00" itemprop="datePublished">
+        Jul 21, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      18 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/usama280/PasteBlogs/tree/master/_notebooks/2021-7-22-Lesson12-nlp_dive.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/PasteBlogs/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/usama280/PasteBlogs/master?filepath=_notebooks%2F2021-7-22-Lesson12-nlp_dive.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/usama280/PasteBlogs/blob/master/_notebooks/2021-7-22-Lesson12-nlp_dive.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-7-22-Lesson12-nlp_dive.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-Language-Model-from-Scratch">A Language Model from Scratch<a class="anchor-link" href="#A-Language-Model-from-Scratch"> </a></h1><p>We have worked with NLP models in the previous lecture, and have seen the many benefits and capabilities of such a model. Now let's try to create our very own model from scratch!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Data">The Data<a class="anchor-link" href="#The-Data"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.text.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">HUMAN_NUMBERS</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#2) [Path(&#39;valid.txt&#39;),Path(&#39;train.txt&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lines</span> <span class="o">=</span> <span class="n">L</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;train.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">lines</span> <span class="o">+=</span> <span class="n">L</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;valid.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">lines</span> <span class="o">+=</span> <span class="n">L</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+<span class="n">lines</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#9998) [&#39;one \n&#39;,&#39;two \n&#39;,&#39;three \n&#39;,&#39;four \n&#39;,&#39;five \n&#39;,&#39;six \n&#39;,&#39;seven \n&#39;,&#39;eight \n&#39;,&#39;nine \n&#39;,&#39;ten \n&#39;...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This is what our data looks like right now</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39; . &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">])</span> <span class="c1">#Reformating</span>
+<span class="n">text</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;one . two . three . four . five . six . seven . eight . nine . ten . eleven . twelve . thirteen . fo&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="c1">#Now lets tokenize it</span>
+<span class="n">tokens</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;one&#39;, &#39;.&#39;, &#39;two&#39;, &#39;.&#39;, &#39;three&#39;, &#39;.&#39;, &#39;four&#39;, &#39;.&#39;, &#39;five&#39;, &#39;.&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">L</span><span class="p">(</span><span class="o">*</span><span class="n">tokens</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="c1">#lets create our vocab</span>
+<span class="n">vocab</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#30) [&#39;one&#39;,&#39;.&#39;,&#39;two&#39;,&#39;three&#39;,&#39;four&#39;,&#39;five&#39;,&#39;six&#39;,&#39;seven&#39;,&#39;eight&#39;,&#39;nine&#39;...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This will be our vocab:Lets also numericalize it.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word2idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">w</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">)}</span> <span class="c1">#Dictionary of word:id</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="n">L</span><span class="p">(</span><span class="n">word2idx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">)</span> <span class="c1">#Numericalization</span>
+<span class="n">tokens</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">nums</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([&#39;one&#39;, &#39;.&#39;, &#39;two&#39;, &#39;.&#39;, &#39;three&#39;, &#39;.&#39;, &#39;four&#39;, &#39;.&#39;, &#39;five&#39;, &#39;.&#39;],
+ (#63095) [0,1,2,1,3,1,4,1,5,1...])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Dataloader">Dataloader<a class="anchor-link" href="#Dataloader"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">L</span><span class="p">((</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#21031) [([&#39;one&#39;, &#39;.&#39;, &#39;two&#39;], &#39;.&#39;),([&#39;.&#39;, &#39;three&#39;, &#39;.&#39;], &#39;four&#39;),([&#39;four&#39;, &#39;.&#39;, &#39;five&#39;], &#39;.&#39;),([&#39;.&#39;, &#39;six&#39;, &#39;.&#39;], &#39;seven&#39;),([&#39;seven&#39;, &#39;.&#39;, &#39;eight&#39;], &#39;.&#39;),([&#39;.&#39;, &#39;nine&#39;, &#39;.&#39;], &#39;ten&#39;),([&#39;ten&#39;, &#39;.&#39;, &#39;eleven&#39;], &#39;.&#39;),([&#39;.&#39;, &#39;twelve&#39;, &#39;.&#39;], &#39;thirteen&#39;),([&#39;thirteen&#39;, &#39;.&#39;, &#39;fourteen&#39;], &#39;.&#39;),([&#39;.&#39;, &#39;fifteen&#39;, &#39;.&#39;], &#39;sixteen&#39;)...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Tokens are created so that the 4th token is the label.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span> <span class="o">=</span> <span class="n">L</span><span class="p">((</span><span class="n">tensor</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">]),</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1">#Lets do the above, but this time using </span>
+<span class="n">seqs</span>                                                                       <span class="c1">#numericalization form</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#21031) [(tensor([0, 1, 2]), 1),(tensor([1, 3, 1]), 4),(tensor([4, 1, 5]), 1),(tensor([1, 6, 1]), 7),(tensor([7, 1, 8]), 1),(tensor([1, 9, 1]), 10),(tensor([10,  1, 11]), 1),(tensor([ 1, 12,  1]), 13),(tensor([13,  1, 14]), 1),(tensor([ 1, 15,  1]), 16)...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bs</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">cut</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span> <span class="c1">#80% training set, 20% valid set</span>
+
+<span class="n">dls</span> <span class="o">=</span> <span class="n">DataLoaders</span><span class="o">.</span><span class="n">from_dsets</span><span class="p">(</span><span class="n">seqs</span><span class="p">[:</span><span class="n">cut</span><span class="p">],</span> <span class="n">seqs</span><span class="p">[</span><span class="n">cut</span><span class="p">:],</span> <span class="n">bs</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls</span><span class="o">.</span><span class="n">one_batch</span><span class="p">()[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0, 1, 2],
+        [1, 3, 1]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Our-Language-Model-in-PyTorch">Our Language Model in PyTorch<a class="anchor-link" href="#Our-Language-Model-in-PyTorch"> </a></h2><p>Below is our language model. As you see, we have created three layers:</p>
+<ul>
+<li>The embedding layer (<code>i_h</code>, for <em>input</em> to <em>hidden</em>)</li>
+<li>The linear layer to create the activations for the next word (<code>h_h</code>, for <em>hidden</em> to <em>hidden</em>)</li>
+<li>A final linear layer to predict the fourth word (<code>h_o</code>, for <em>hidden</em> to <em>output</em>)</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel1</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span><span class="c1">#input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span><span class="c1">#hidden     </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span><span class="n">vocab_sz</span><span class="p">)</span><span class="c1">#output</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])))</span> <span class="c1">#word 1</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#word 2</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span> <span class="c1">#word 3</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1">#pred (word 4)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Train">Train<a class="anchor-link" href="#Train"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel1</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">),</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">,</span> 
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.794209</td>
+      <td>2.036811</td>
+      <td>0.466128</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.384254</td>
+      <td>1.801755</td>
+      <td>0.473734</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.404778</td>
+      <td>1.655324</td>
+      <td>0.494176</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.369884</td>
+      <td>1.709227</td>
+      <td>0.423104</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Awesome we created our first NLP model!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span><span class="p">,</span><span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">dls</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">+=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">range_of</span><span class="p">(</span><span class="n">vocab</span><span class="p">):</span> <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="n">idx</span><span class="p">,</span> <span class="n">vocab</span><span class="p">[</span><span class="n">idx</span><span class="o">.</span><span class="n">item</span><span class="p">()],</span> <span class="n">counts</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">/</span><span class="n">n</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor(29), &#39;thousand&#39;, 0.15165200855716662)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Our acc would have been .15 had we used an naive model</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Refining-our-model---Recurrent-Neural-Network">Refining our model - Recurrent Neural Network<a class="anchor-link" href="#Refining-our-model---Recurrent-Neural-Network"> </a></h2><p>Lets refactor our above model.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel2</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>     
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span><span class="n">vocab_sz</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span> <span class="c1">#lets use a forloop to create layers</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that here h is set to 0 after every batch</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">),</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">,</span> 
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.876980</td>
+      <td>2.084122</td>
+      <td>0.410744</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.407598</td>
+      <td>1.821299</td>
+      <td>0.467316</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.410389</td>
+      <td>1.680269</td>
+      <td>0.490373</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.372142</td>
+      <td>1.709884</td>
+      <td>0.415498</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Roughly the same as we expected. However, what we have created this time is actually an RNN!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Improving-the-RNN">Improving the RNN<a class="anchor-link" href="#Improving-the-RNN"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Maintaining-the-State-of-an-RNN">Maintaining the State of an RNN<a class="anchor-link" href="#Maintaining-the-State-of-an-RNN"> </a></h2><p>The first way we can improve our model is by actually remembering the state of h from the previous batches. Recall that before we set h=0 after every batch.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel3</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>     
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span><span class="n">vocab_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="c1">#detach throws away the stored gradients - However, the activations are still stored</span>
+        <span class="k">return</span> <span class="n">out</span>
+    
+    <span class="c1">#Start of each epoch, we should reset out h</span>
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span><span class="o">//</span><span class="n">bs</span>
+<span class="n">m</span><span class="p">,</span><span class="n">bs</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(328, 64, 21031)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Minibatches">Minibatches<a class="anchor-link" href="#Minibatches"> </a></h3><p>Recall from Lecture 10 how we created the minibatches. Where the nth row from a minibatch followed the nth row from the previous minibatch. The function below does exactly that for us.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">group_chunks</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">bs</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span> <span class="o">//</span> <span class="n">bs</span>
+    <span class="n">new_ds</span> <span class="o">=</span> <span class="n">L</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span> <span class="n">new_ds</span> <span class="o">+=</span> <span class="n">L</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">m</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">new_ds</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">group_chunks</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">bs</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#3) [(tensor([3, 1, 2]), 28),(tensor([28, 24,  2]), 1),(tensor([ 1,  6, 28]), 25)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="n">m</span><span class="o">*</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#3) [(tensor([3, 1, 2]), 28),(tensor([28, 24,  2]), 1),(tensor([ 1,  6, 28]), 25)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Lets recreate our dataloader using our improved minibatch format</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cut</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">dls</span> <span class="o">=</span> <span class="n">DataLoaders</span><span class="o">.</span><span class="n">from_dsets</span><span class="p">(</span>
+    <span class="n">group_chunks</span><span class="p">(</span><span class="n">seqs</span><span class="p">[:</span><span class="n">cut</span><span class="p">],</span> <span class="n">bs</span><span class="p">),</span> 
+    <span class="n">group_chunks</span><span class="p">(</span><span class="n">seqs</span><span class="p">[</span><span class="n">cut</span><span class="p">:],</span> <span class="n">bs</span><span class="p">),</span> 
+    <span class="n">bs</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel3</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">),</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">,</span>
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">ModelResetter</span><span class="p">)</span> <span class="c1">#This will call our reset function</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.706451</td>
+      <td>1.823746</td>
+      <td>0.443510</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.282585</td>
+      <td>1.720615</td>
+      <td>0.455048</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.100162</td>
+      <td>1.534231</td>
+      <td>0.531250</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.031388</td>
+      <td>1.547766</td>
+      <td>0.532933</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.971291</td>
+      <td>1.532978</td>
+      <td>0.558654</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.929672</td>
+      <td>1.446295</td>
+      <td>0.571154</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.883135</td>
+      <td>1.520370</td>
+      <td>0.588221</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.824741</td>
+      <td>1.607137</td>
+      <td>0.599038</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.789257</td>
+      <td>1.675977</td>
+      <td>0.594952</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.776834</td>
+      <td>1.629597</td>
+      <td>0.596875</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Creating-More-Signal">Creating More Signal<a class="anchor-link" href="#Creating-More-Signal"> </a></h2><p>Rather than predicting every 4th word, why don't we predict every other word.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sl</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">seqs</span> <span class="o">=</span> <span class="n">L</span><span class="p">((</span><span class="n">tensor</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">sl</span><span class="p">]),</span> <span class="n">tensor</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">sl</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span>
+         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="n">sl</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">sl</span><span class="p">))</span>
+
+<span class="n">cut</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1">#dataloader</span>
+<span class="n">dls</span> <span class="o">=</span> <span class="n">DataLoaders</span><span class="o">.</span><span class="n">from_dsets</span><span class="p">(</span><span class="n">group_chunks</span><span class="p">(</span><span class="n">seqs</span><span class="p">[:</span><span class="n">cut</span><span class="p">],</span> <span class="n">bs</span><span class="p">),</span>
+                             <span class="n">group_chunks</span><span class="p">(</span><span class="n">seqs</span><span class="p">[</span><span class="n">cut</span><span class="p">:],</span> <span class="n">bs</span><span class="p">),</span>
+                             <span class="n">bs</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seqs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([0, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1]),
+ tensor([1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">vocab</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(#16) [&#39;one&#39;,&#39;.&#39;,&#39;two&#39;,&#39;.&#39;,&#39;three&#39;,&#39;.&#39;,&#39;four&#39;,&#39;.&#39;,&#39;five&#39;,&#39;.&#39;...],
+ (#16) [&#39;.&#39;,&#39;two&#39;,&#39;.&#39;,&#39;three&#39;,&#39;.&#39;,&#39;four&#39;,&#39;.&#39;,&#39;five&#39;,&#39;.&#39;,&#39;six&#39;...]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel4</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>     
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span><span class="n">vocab_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">outs</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#list of output</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sl</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
+            
+            <span class="n">outs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))</span> <span class="c1">#append</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#stack of outputs</span>
+    
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">loss_func</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)),</span> <span class="n">targ</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel4</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">),</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">loss_func</span><span class="p">,</span>
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">ModelResetter</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3.208388</td>
+      <td>2.989674</td>
+      <td>0.220052</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2.304600</td>
+      <td>1.926858</td>
+      <td>0.457845</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.737188</td>
+      <td>1.785296</td>
+      <td>0.450684</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.462938</td>
+      <td>1.722541</td>
+      <td>0.492106</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1.269122</td>
+      <td>1.607646</td>
+      <td>0.568197</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.122454</td>
+      <td>1.725385</td>
+      <td>0.579508</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.989286</td>
+      <td>1.876261</td>
+      <td>0.620443</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.877782</td>
+      <td>2.080590</td>
+      <td>0.626383</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.779877</td>
+      <td>2.068581</td>
+      <td>0.646729</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.702537</td>
+      <td>2.105229</td>
+      <td>0.655518</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.648459</td>
+      <td>2.225554</td>
+      <td>0.670654</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.602616</td>
+      <td>2.259415</td>
+      <td>0.672607</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.571914</td>
+      <td>2.272124</td>
+      <td>0.676270</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.552240</td>
+      <td>2.258376</td>
+      <td>0.678874</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.540891</td>
+      <td>2.214495</td>
+      <td>0.678630</td>
+      <td>00:01</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Better than before!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multilayer-RNNs">Multilayer RNNs<a class="anchor-link" href="#Multilayer-RNNs"> </a></h2><p>Lets create a deeper and more layered RNN. What's unique about this RNN is that each layer will have a different weight matrix. Lets change our model and see how it performs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Model">The Model<a class="anchor-link" href="#The-Model"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel5</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>
+                                             <span class="c1">#How many layer to stack  </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#This is doing what our previous model did:</span>
+                                                                          <span class="c1">#Looping of the layers      </span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">res</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span> <span class="c1">#Notice that we can do the loop by calling our RNN</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> 
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel5</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> 
+                <span class="n">loss_func</span><span class="o">=</span><span class="n">CrossEntropyLossFlat</span><span class="p">(),</span> 
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">ModelResetter</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">3e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3.014767</td>
+      <td>2.582862</td>
+      <td>0.420003</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2.149063</td>
+      <td>1.779345</td>
+      <td>0.471354</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.704159</td>
+      <td>1.854296</td>
+      <td>0.351156</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.472523</td>
+      <td>1.680113</td>
+      <td>0.467692</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1.299899</td>
+      <td>1.845994</td>
+      <td>0.488200</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.145692</td>
+      <td>2.308071</td>
+      <td>0.487874</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1.022578</td>
+      <td>2.543387</td>
+      <td>0.480794</td>
+      <td>00:01</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.923336</td>
+      <td>2.659213</td>
+      <td>0.493815</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.822356</td>
+      <td>2.721887</td>
+      <td>0.509277</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.733957</td>
+      <td>2.826130</td>
+      <td>0.524740</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.663029</td>
+      <td>2.933543</td>
+      <td>0.532878</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.612702</td>
+      <td>2.961933</td>
+      <td>0.537842</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.577110</td>
+      <td>3.006170</td>
+      <td>0.538493</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.555790</td>
+      <td>3.018762</td>
+      <td>0.536133</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.544564</td>
+      <td>3.017484</td>
+      <td>0.538574</td>
+      <td>00:02</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Our model did worse. Does that mean our model is bad? No, what most likley happened here is that our gradient has either exploded or disappeared.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="LSTM">LSTM<a class="anchor-link" href="#LSTM"> </a></h2><p>We can fix the issue of gradients exploding or disappearing by creating another type of architecture, LSTM.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Building-an-LSTM-from-Scratch">Building an LSTM from Scratch<a class="anchor-link" href="#Building-an-LSTM-from-Scratch"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LSTMCell</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nh</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forget_gate</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ni</span> <span class="o">+</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_gate</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ni</span> <span class="o">+</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell_gate</span>   <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ni</span> <span class="o">+</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_gate</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ni</span> <span class="o">+</span> <span class="n">nh</span><span class="p">,</span> <span class="n">nh</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">h</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">h</span><span class="p">,</span> <span class="nb">input</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">forget</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forget_gate</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">forget</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_gate</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_gate</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">inp</span> <span class="o">*</span> <span class="n">cell</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_gate</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">out</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>We can refactor the above code</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LSTMCell</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nh</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ih</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">nh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">nh</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">h</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="c1"># One big multiplication for all the gates is better than 4 smaller ones</span>
+        <span class="n">gates</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ih</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hh</span><span class="p">(</span><span class="n">h</span><span class="p">))</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">ingate</span><span class="p">,</span><span class="n">forgetgate</span><span class="p">,</span><span class="n">outgate</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">,</span> <span class="n">gates</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">cellgate</span> <span class="o">=</span> <span class="n">gates</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">tanh</span><span class="p">()</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">forgetgate</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ingate</span><span class="o">*</span><span class="n">cellgate</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">outgate</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">tanh</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span> <span class="n">t</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([0, 1, 2, 3, 4]), tensor([5, 6, 7, 8, 9]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Training-a-Language-Model-Using-LSTMs">Training a Language Model Using LSTMs<a class="anchor-link" href="#Training-a-Language-Model-Using-LSTMs"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel6</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="c1">#more hidden state layers because LSTM has more layers</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#Replace our RNN to LSTM</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">res</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="n">h_</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="k">for</span> <span class="n">h_</span> <span class="ow">in</span> <span class="n">h</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">:</span> <span class="n">h</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel6</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> 
+                <span class="n">loss_func</span><span class="o">=</span><span class="n">CrossEntropyLossFlat</span><span class="p">(),</span> 
+                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">ModelResetter</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3.012262</td>
+      <td>2.700189</td>
+      <td>0.295003</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2.168225</td>
+      <td>1.905885</td>
+      <td>0.366048</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.620007</td>
+      <td>1.739222</td>
+      <td>0.475830</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1.364854</td>
+      <td>2.005928</td>
+      <td>0.523926</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1.133465</td>
+      <td>2.469636</td>
+      <td>0.541504</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.916891</td>
+      <td>2.274207</td>
+      <td>0.563883</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.715401</td>
+      <td>2.295597</td>
+      <td>0.635661</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.535663</td>
+      <td>2.418355</td>
+      <td>0.629964</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.387026</td>
+      <td>2.185029</td>
+      <td>0.680094</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.284487</td>
+      <td>2.342169</td>
+      <td>0.701497</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.212791</td>
+      <td>2.192696</td>
+      <td>0.718994</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.153409</td>
+      <td>2.317826</td>
+      <td>0.720540</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.115390</td>
+      <td>2.283189</td>
+      <td>0.730957</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.092992</td>
+      <td>2.291156</td>
+      <td>0.729574</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.082400</td>
+      <td>2.273516</td>
+      <td>0.731771</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Our model is doing much better now</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Regularizing-an-LSTM">Regularizing an LSTM<a class="anchor-link" href="#Regularizing-an-LSTM"> </a></h2><p>Will be using some regularization technique to improve our model's gradients, particularly Dropout. What dropout does is that it randomly drops some neurons each minibatch: This forces the model to become more robust by making it able to produce the correct prediction even with less neurons available.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dropout">Dropout<a class="anchor-link" href="#Dropout"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Dropout</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="c1">#probility that activation gets deleted</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span><span class="p">:</span>  <span class="c1">#NO DROPOUT DURING TESTING (Only occurs during training)</span>
+            <span class="k">return</span> <span class="n">x</span>
+        
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">bernoulli_</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span> <span class="c1">#1&#39;s and 0&#39;s where 1-p is the prob that we get a 1</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">mask</span><span class="o">.</span><span class="n">div_</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Activation-Regularization-and-Temporal-Activation-Regularization">Activation Regularization and Temporal Activation Regularization<a class="anchor-link" href="#Activation-Regularization-and-Temporal-Activation-Regularization"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Activation regularization</em> (AR) and <em>temporal activation regularization</em> (TAR) are two regularization methods very similar to weight decay, which we have discussed before.</p>
+<p>For activation regularization, it's the final activations produced by the LSTM that we will try to make as small as possible, instead of the weights.</p>
+<div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">activations</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Temporal activation regularization is there to encourage that behavior by adding a penalty to the loss to make the difference between two consecutive activations as small as possible:</p>
+<div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">+=</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">activations</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">activations</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Training-a-Weight-Tied-Regularized-LSTM">Training a Weight-Tied Regularized LSTM<a class="anchor-link" href="#Training-a-Weight-Tied-Regularized-LSTM"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LMModel7</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">drop</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1">#Dropout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="o">.</span><span class="n">weight</span> <span class="c1">#Hidden-to-output weights are set identical to input-to-hidden</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">bs</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">raw</span><span class="p">,</span><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="n">h_</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="k">for</span> <span class="n">h_</span> <span class="ow">in</span> <span class="n">h</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="n">raw</span><span class="p">,</span><span class="n">out</span>
+    
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">:</span> <span class="n">h</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that Hidden-to-output and input-to-hidden are linked by the same parameters</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel7</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+                <span class="n">loss_func</span><span class="o">=</span><span class="n">CrossEntropyLossFlat</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span>
+                <span class="n">cbs</span><span class="o">=</span><span class="p">[</span><span class="n">ModelResetter</span><span class="p">,</span> <span class="n">RNNRegularizer</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)])</span> <span class="c1">#Although we didn&#39;t create our regularizer, we can still</span>
+                                                                      <span class="c1">#pass it via cbs. </span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">TextLearner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">LMModel7</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span>
+                    <span class="n">loss_func</span><span class="o">=</span><span class="n">CrossEntropyLossFlat</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Calling TextLearner will automatically add ModelResetter, RNNRegularizer(alpha=2, beta=1) for us</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>2.797331</td>
+      <td>2.223156</td>
+      <td>0.435465</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.981550</td>
+      <td>1.755357</td>
+      <td>0.458740</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.272993</td>
+      <td>0.754981</td>
+      <td>0.765381</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.728812</td>
+      <td>0.600991</td>
+      <td>0.828125</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.439376</td>
+      <td>0.546993</td>
+      <td>0.836995</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.298545</td>
+      <td>0.453179</td>
+      <td>0.866781</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.224571</td>
+      <td>0.446198</td>
+      <td>0.865641</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.184994</td>
+      <td>0.472140</td>
+      <td>0.862793</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.159867</td>
+      <td>0.493649</td>
+      <td>0.847900</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.143191</td>
+      <td>0.476974</td>
+      <td>0.852458</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.131329</td>
+      <td>0.475887</td>
+      <td>0.851318</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.122343</td>
+      <td>0.522000</td>
+      <td>0.833333</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.115645</td>
+      <td>0.531508</td>
+      <td>0.827881</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.111532</td>
+      <td>0.502286</td>
+      <td>0.835856</td>
+      <td>00:04</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.108859</td>
+      <td>0.507470</td>
+      <td>0.835286</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h2><p>Overall, we were not only able to create a NLP model from scratch but also refine it using LSTM's and Dropout.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Questionnaire">Questionnaire<a class="anchor-link" href="#Questionnaire"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><strong>If the dataset for your project is so big and complicated that working with it takes a significant amount of time, what should you do?</strong><br />
+Create a simple dataset that allow for quick and easy prototyping.</li>
+<li><strong>Why do we concatenate the documents in our dataset before creating a language model?</strong><br />
+This allows us to easily split up data into batches.</li>
+<li><strong>To use a standard fully connected network to predict the fourth word given the previous three words, what two tweaks do we need to make to our model?</strong><br />
+Use same weight matrix for the three layers.<br />
+Use the first word’s embeddings as activations to pass to linear layer, add the second word’s embeddings to the first layer’s output activations, and continues for rest of words.</li>
+<li><strong>How can we share a weight matrix across multiple layers in PyTorch?</strong><br />
+Define one layer in the PyTorch model class and use it multiple times in the forward pass.</li>
+<li><p><strong>Write a module that predicts the third word given the previous two words of a sentence, without peeking.</strong></p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LMModel1</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+ <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">):</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_sz</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>  
+     <span class="bp">self</span><span class="o">.</span><span class="n">h_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span>     
+     <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span><span class="n">vocab_sz</span><span class="p">)</span>
+
+ <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+     <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+         <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_h</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+         <span class="n">h</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_h</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_o</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+</pre></div>
+</li>
+<li><strong>What is a recurrent neural network?</strong><br />
+A refactoring of a multi-layer neural network as a loop.</li>
+<li><strong>What is "hidden state"?</strong><br />
+Hidden state's are the activations updated after each RNN step.</li>
+<li><strong>What is the equivalent of hidden state in <code>LMModel1</code>?</strong><br />
+h</li>
+<li><strong>To maintain the state in an RNN, why is it important to pass the text to the model in order?</strong><br />
+Because state is maintained over all batches, so order matters.</li>
+<li><strong>What is an "unrolled" representation of an RNN?</strong><br />
+A representation without loops.</li>
+<li><strong>Why can maintaining the hidden state in an RNN lead to memory and performance problems? How do we fix this problem?</strong><br />
+Backpropagation would cause it to calculate the gradients of all the past calls. This can be avoided using detach().</li>
+<li><strong>What is "BPTT"?</strong><br />
+Calculating backpropagation only for the given batch (detach()). </li>
+<li><strong>Write code to print out the first few batches of the validation set, including converting the token IDs back into English strings, as we showed for batches of IMDb data in &lt;<chapter_nlp>&gt;.&lt;/strong&gt;  <div class="highlight"><pre><span></span><span class="p">[</span><span class="n">vocab</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dls</span><span class="o">.</span><span class="n">one_batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+&lt;/li&gt;
+<li><strong>What does the <code>ModelResetter</code> callback do? Why do we need it?</strong><br />
+It calls our reset method, which resets our hidden state before every epoch.</li>
+<li><strong>What are the downsides of predicting just one output word for each three input words?</strong><br />
+There is a lot of extra information for training the model that is not being used. </li>
+<li><strong>Why do we need a custom loss function for <code>LMModel4</code>?</strong><br />
+We have a stacked output, which we need to flatten as CrossEntropyLoss expects flattened tensors. </li>
+<li><strong>Why is the training of <code>LMModel4</code> unstable?</strong><br />
+Because this network is very deep it leads gradient to explode or disappear</li>
+<li><strong>In the unrolled representation, we can see that a recurrent neural network actually has many layers. So why do we need to stack RNNs to get better results?</strong><br />
+Because only one weight matrix is really being used. We can fix this by stacking.</li>
+<li><strong>Draw a representation of a stacked (multilayer) RNN.</strong><br />
+<img src="https://forums.fast.ai/uploads/default/optimized/3X/7/b/7bc57ceda0037ba170ce03acbd849e93b30cb5e0_2_1035x586.png" alt="" /></li>
+<li><strong>Why should we get better results in an RNN if we call <code>detach</code> less often? Why might this not happen in practice with a simple RNN?</strong>  </li>
+<li><strong>Why can a deep network result in very large or very small activations? Why does this matter?</strong><br />
+Numbers that are slightly large or small can lead to the explosion or disappearance of the number after repeated multiplications. In deep networks, we have repeated matrix multiplications, so this is a big problem.</li>
+<li><strong>In a computer's floating-point representation of numbers, which numbers are the most precise?</strong><br />
+Small numbers (Not too close to 0 however)</li>
+<li><strong>Why do vanishing gradients prevent training?</strong><br />
+No gradients mean no change in weights</li>
+<li><strong>Why does it help to have two hidden states in the LSTM architecture? What is the purpose of each one?</strong><br />
+One state remembers what happened earlier in the sentence, and the other predicts the next token.</li>
+<li><strong>What are these two states called in an LSTM?</strong><br />
+Cell state (long short-term memory)<br />
+Hidden state (prediction)</li>
+<li><strong>What is tanh, and how is it related to sigmoid?</strong><br />
+A sigmoid function rescaled to the range of -1 to 1</li>
+<li><strong>What is the purpose of this code in <code>LSTMCell</code>: <code>h = torch.cat([h, input], dim=1)</code></strong><br />
+Joins the hidden state and the new input.</li>
+<li><strong>What does <code>chunk</code> do in PyTorch?</strong><br />
+Splits tensor in equal sizes.</li>
+<li><strong>Study the refactored version of <code>LSTMCell</code> carefully to ensure you understand how and why it does the same thing as the non-refactored version.</strong>  </li>
+<li><strong>Why can we use a higher learning rate for <code>LMModel6</code>?</strong><br />
+Because now that we are using an LSTM, we have a partial solution to exploding/vanishing gradients.</li>
+<li><strong>What are the three regularization techniques used in an AWD-LSTM model?</strong><br />
+Dropout<br />
+Activation regularization<br />
+Temporal activation regularization</li>
+<li><strong>What is "dropout"?</strong><br />
+Random removal of neurons</li>
+<li><strong>Why do we scale the weights with dropout? Is this applied during training, inference, or both?</strong><br />
+The scale changes if we sum up activations, so to correct the scale, a division by (1-p) is applied. We applied this only during training, but can be done both ways. </li>
+<li><strong>What is the purpose of this line from <code>Dropout</code>: <code>if not self.training: return x</code></strong><br />
+Prevents the usage of dropout during testing. </li>
+<li><strong>Experiment with <code>bernoulli_</code> to understand how it works.</strong>  </li>
+<li><strong>How do you set your model in training mode in PyTorch? In evaluation mode?</strong><br />
+Module.train(), Module.eval()</li>
+<li><strong>Write the equation for activation regularization (in math or code, as you prefer). How is it different from weight decay?</strong>   <div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">activations</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+It's different because here we are not decreasing the weights, rather the activations</li>
+<li><strong>Write the equation for temporal activation regularization (in math or code, as you prefer). Why wouldn't we use this for computer vision problems?</strong>  <div class="highlight"><pre><span></span><span class="n">loss</span> <span class="o">+=</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">activations</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">activations</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+This focuses on making the activations of consecutive tokens to be similar:</li>
+<li><strong>What is "weight tying" in a language model?</strong><br />
+Where weights of hidden-to-output layer is the same as input-to-hidden.</li>
+&lt;/ol&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Further-Research">Further Research<a class="anchor-link" href="#Further-Research"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>In <code>LMModel2</code>, why can <code>forward</code> start with <code>h=0</code>? Why don't we need to say <code>h=torch.zeros(...)</code>?</li>
+<li>Write the code for an LSTM from scratch (you may refer to &lt;<lstm>&gt;).&lt;/li&gt;
+<li>Search the internet for the GRU architecture and implement it from scratch, and try training a model. See if you can get results similar to those we saw in this chapter. Compare you results to the results of PyTorch's built in <code>GRU</code> module.</li>
+<li>Take a look at the source code for AWD-LSTM in fastai, and try to map each of the lines of code to the concepts shown in this chapter.</li>
+&lt;/ol&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+
+</lstm></li></ol></div></div></div></chapter_nlp></strong></li></ol></div></div></div></div>
+
+
+  </div><a class="u-url" href="/PasteBlogs/2021/07/21/Lesson12-nlp_dive.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/PasteBlogs/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/PasteBlogs/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

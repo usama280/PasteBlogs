@@ -1,0 +1,2515 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Lesson 10 - FastAI | PasteBlogs</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Lesson 10 - FastAI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="A blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://usama280.github.io/PasteBlogs/2021/07/21/Lesson10-nlp.html" />
+<meta property="og:url" content="https://usama280.github.io/PasteBlogs/2021/07/21/Lesson10-nlp.html" />
+<meta property="og:site_name" content="PasteBlogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-21T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"A blogging platform with support for Jupyter Notebooks.","url":"https://usama280.github.io/PasteBlogs/2021/07/21/Lesson10-nlp.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://usama280.github.io/PasteBlogs/2021/07/21/Lesson10-nlp.html"},"headline":"Lesson 10 - FastAI","dateModified":"2021-07-21T00:00:00-05:00","datePublished":"2021-07-21T00:00:00-05:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/PasteBlogs/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://usama280.github.io/PasteBlogs/feed.xml" title="PasteBlogs" /><link rel="shortcut icon" type="image/x-icon" href="/PasteBlogs/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/PasteBlogs/">PasteBlogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/PasteBlogs/about/">About Me</a><a class="page-link" href="/PasteBlogs/search/">Search</a><a class="page-link" href="/PasteBlogs/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Lesson 10 - FastAI</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-21T00:00:00-05:00" itemprop="datePublished">
+        Jul 21, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      17 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/usama280/PasteBlogs/tree/master/_notebooks/2021-7-20-Lesson10-nlp.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/PasteBlogs/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/usama280/PasteBlogs/master?filepath=_notebooks%2F2021-7-20-Lesson10-nlp.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/usama280/PasteBlogs/blob/master/_notebooks/2021-7-20-Lesson10-nlp.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-7-20-Lesson10-nlp.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NLP-Deep-Dive:-RNNs">NLP Deep Dive: RNNs<a class="anchor-link" href="#NLP-Deep-Dive:-RNNs"> </a></h1><p>We are now going to take a look into natural language processing. Were going to build two models: One that can predict the next word (generate text), and another that can classify if a text is positive or negative. Note: We will be using a movie review dataset for this model.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Grab-path">Grab path<a class="anchor-link" href="#Grab-path"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.text.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">IMDB</span><span class="p">)</span> <span class="c1">#our data path</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Path</span><span class="o">.</span><span class="n">BASE_PATH</span> <span class="o">=</span> <span class="n">path</span>
+<span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#7) [Path(&#39;train&#39;),Path(&#39;imdb.vocab&#39;),Path(&#39;tmp_lm&#39;),Path(&#39;unsup&#39;),Path(&#39;tmp_clas&#39;),Path(&#39;README&#39;),Path(&#39;test&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;train/pos&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span> <span class="c1">#the path consists of text files</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#12500) [Path(&#39;train/pos/5840_7.txt&#39;),Path(&#39;train/pos/7429_9.txt&#39;),Path(&#39;train/pos/8401_10.txt&#39;),Path(&#39;train/pos/4606_7.txt&#39;),Path(&#39;train/pos/11152_10.txt&#39;),Path(&#39;train/pos/11180_7.txt&#39;),Path(&#39;train/pos/11887_8.txt&#39;),Path(&#39;train/pos/8072_10.txt&#39;),Path(&#39;train/pos/5256_10.txt&#39;),Path(&#39;train/pos/6267_10.txt&#39;)...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="n">get_text_files</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;unsup&#39;</span><span class="p">])</span> <span class="c1">#lets grab the following folders</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">txt</span> <span class="o">=</span> <span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">open</span><span class="p">()</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">txt</span><span class="p">[:</span><span class="mi">75</span><span class="p">]</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;While the premise of the film is pretty lame (Ollie is diagnosed with &#34;horn&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Word-Tokenization-with-FastAI">Word Tokenization with FastAI<a class="anchor-link" href="#Word-Tokenization-with-FastAI"> </a></h3><p>To store the words, will be using a tokenizer. There are many benefits to using tokenizers as you will see below.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">spacy</span> <span class="o">=</span> <span class="n">WordTokenizer</span><span class="p">()</span>  <span class="c1">#our tokenizer</span>
+<span class="n">toks</span> <span class="o">=</span> <span class="n">first</span><span class="p">(</span><span class="n">spacy</span><span class="p">([</span><span class="n">txt</span><span class="p">]))</span> <span class="c1">#tokenize our scentence and grab first </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coll_repr</span><span class="p">(</span><span class="n">toks</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(#365) [&#39;While&#39;,&#39;the&#39;,&#39;premise&#39;,&#39;of&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;pretty&#39;,&#39;lame&#39;,&#39;(&#39;,&#39;Ollie&#39;,&#39;is&#39;,&#39;diagnosed&#39;,&#39;with&#39;,&#39;&#34;&#39;,&#39;hornophobia&#39;,&#39;&#34;&#39;,&#39;)&#39;,&#39;,&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;an&#39;,&#39;amiable&#39;,&#39;and&#39;,&#39;enjoyable&#39;,&#39;little&#39;,&#39;flick&#39;,&#39;.&#39;,&#39;It&#39;...]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">first</span><span class="p">(</span><span class="n">spacy</span><span class="p">([</span><span class="s1">&#39;The U.S. dollar $1 is $1.00.&#39;</span><span class="p">]))</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#9) [&#39;The&#39;,&#39;U.S.&#39;,&#39;dollar&#39;,&#39;$&#39;,&#39;1&#39;,&#39;is&#39;,&#39;$&#39;,&#39;1.00&#39;,&#39;.&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice U.S. and 1.00 is not seperated:This is one reason why tokenizers are useful.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tkn</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">spacy</span><span class="p">)</span> <span class="c1">#Wrapper that designates special tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coll_repr</span><span class="p">(</span><span class="n">tkn</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="mi">31</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(#403) [&#39;xxbos&#39;,&#39;xxmaj&#39;,&#39;while&#39;,&#39;the&#39;,&#39;premise&#39;,&#39;of&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;pretty&#39;,&#39;lame&#39;,&#39;(&#39;,&#39;ollie&#39;,&#39;is&#39;,&#39;diagnosed&#39;,&#39;with&#39;,&#39;&#34;&#39;,&#39;hornophobia&#39;,&#39;&#34;&#39;,&#39;)&#39;,&#39;,&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;an&#39;,&#39;amiable&#39;,&#39;and&#39;,&#39;enjoyable&#39;,&#39;little&#39;,&#39;flick&#39;,&#39;.&#39;...]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>xxbos:Beggining of text  &gt; xxmaj:Next word was capital  &gt; xxnuk:Next word is unknown  &gt; xxrep:Repeated words<br />
+Just know that anything that is xx___ is a special token</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">defaults</span><span class="o">.</span><span class="n">text_proc_rules</span> <span class="c1">#some more rules</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&lt;function fastai.text.core.fix_html(x)&gt;,
+ &lt;function fastai.text.core.replace_rep(t)&gt;,
+ &lt;function fastai.text.core.replace_wrep(t)&gt;,
+ &lt;function fastai.text.core.spec_add_spaces(t)&gt;,
+ &lt;function fastai.text.core.rm_useless_spaces(t)&gt;,
+ &lt;function fastai.text.core.replace_all_caps(t)&gt;,
+ &lt;function fastai.text.core.replace_maj(t)&gt;,
+ &lt;function fastai.text.core.lowercase(t, add_bos=True, add_eos=False)&gt;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">coll_repr</span><span class="p">(</span><span class="n">tkn</span><span class="p">(</span><span class="s1">&#39;&amp;copy;   Fast.ai www.fast.ai/INDEX&#39;</span><span class="p">),</span> <span class="mi">31</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;(#11) [&#39;xxbos&#39;,&#39;©&#39;,&#39;xxmaj&#39;,&#39;fast.ai&#39;,&#39;xxrep&#39;,&#39;3&#39;,&#39;w&#39;,&#39;.fast.ai&#39;,&#39;/&#39;,&#39;xxup&#39;,&#39;index&#39;]&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sidebar:-Subword-Tokenization">Sidebar: Subword Tokenization<a class="anchor-link" href="#Sidebar:-Subword-Tokenization"> </a></h2><p>Subword tokenization is a new tokenizer that determines words not based on spaces but frequency. This is actually better than the WordTokenizer as it can determine words from character based languages that lack spaces (Ex: Chinese).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">txts</span> <span class="o">=</span> <span class="n">L</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">open</span><span class="p">()</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">files</span><span class="p">[:</span><span class="mi">2000</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">subword</span><span class="p">(</span><span class="n">sz</span><span class="p">):</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="n">SubwordTokenizer</span><span class="p">(</span><span class="n">vocab_sz</span><span class="o">=</span><span class="n">sz</span><span class="p">)</span>
+    <span class="n">sp</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">txts</span><span class="p">)</span> <span class="c1">#trains subword token for the most commonly occuring words</span>
+    
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">sp</span><span class="p">([</span><span class="n">txt</span><span class="p">]))[:</span><span class="mi">40</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">subword</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;▁Whil e ▁the ▁pre m ise ▁of ▁the ▁film ▁is ▁pretty ▁la me ▁( O ll ie ▁is ▁di ag no s ed ▁with ▁&#34; h or n op ho b ia &#34; ), ▁the ▁film ▁is ▁an ▁a mi&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Here words that are togather (no spaces between letters) are very common:Example, 'the' and 'pretty'</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">subword</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="c1">#lets make the word vocab smaller</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;▁ W h i le ▁the ▁p re m is e ▁of ▁the ▁film ▁is ▁p re t t y ▁ la m e ▁ ( O ll i e ▁is ▁d i a g n o s ed ▁with&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that many words have yet to be identified. (Unlike film and with)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">subword</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span> <span class="c1">#lets train a much larger word vocab</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;▁Whil e ▁the ▁premise ▁of ▁the ▁film ▁is ▁pretty ▁lame ▁( O ll ie ▁is ▁diagnos ed ▁with ▁&#34; h or no pho b ia &#34;) , ▁the ▁film ▁is ▁an ▁a mi able ▁and ▁enjoyable ▁little ▁flick . ▁It&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="End-Sidebar">End Sidebar<a class="anchor-link" href="#End-Sidebar"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Numericalization-with-fastai">Numericalization with fastai<a class="anchor-link" href="#Numericalization-with-fastai"> </a></h2><p>Numericalization alters tokens so that only numerical values are within the lists: These values refer to the vocab.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Example below</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">toks200</span> <span class="o">=</span> <span class="n">txts</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tkn</span><span class="p">)</span>
+<span class="n">toks200</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#403) [&#39;xxbos&#39;,&#39;xxmaj&#39;,&#39;while&#39;,&#39;the&#39;,&#39;premise&#39;,&#39;of&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;pretty&#39;...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">num</span> <span class="o">=</span> <span class="n">Numericalize</span><span class="p">()</span> <span class="c1">#returns tokens in order of freq</span>
+<span class="n">num</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">toks200</span><span class="p">)</span>
+<span class="n">coll_repr</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">vocab</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;(#2200) [&#39;xxunk&#39;,&#39;xxpad&#39;,&#39;xxbos&#39;,&#39;xxeos&#39;,&#39;xxfld&#39;,&#39;xxrep&#39;,&#39;xxwrep&#39;,&#39;xxup&#39;,&#39;xxmaj&#39;,&#39;the&#39;,&#39;.&#39;,&#39;,&#39;,&#39;and&#39;,&#39;a&#39;,&#39;of&#39;,&#39;to&#39;,&#39;is&#39;,&#39;in&#39;,&#39;it&#39;,&#39;i&#39;...]&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">toks200</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">num</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>TensorText([  2,   8, 171,   9,   0,  14,   9,  29,  16, 188])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Now lets do it on our text</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tkn</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">WordTokenizer</span><span class="p">())</span>
+<span class="n">toks</span> <span class="o">=</span> <span class="n">tkn</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coll_repr</span><span class="p">(</span><span class="n">tkn</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="mi">31</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(#403) [&#39;xxbos&#39;,&#39;xxmaj&#39;,&#39;while&#39;,&#39;the&#39;,&#39;premise&#39;,&#39;of&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;pretty&#39;,&#39;lame&#39;,&#39;(&#39;,&#39;ollie&#39;,&#39;is&#39;,&#39;diagnosed&#39;,&#39;with&#39;,&#39;&#34;&#39;,&#39;hornophobia&#39;,&#39;&#34;&#39;,&#39;)&#39;,&#39;,&#39;,&#39;the&#39;,&#39;film&#39;,&#39;is&#39;,&#39;an&#39;,&#39;amiable&#39;,&#39;and&#39;,&#39;enjoyable&#39;,&#39;little&#39;,&#39;flick&#39;,&#39;.&#39;...]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="n">num</span><span class="p">(</span><span class="n">toks</span><span class="p">)[:</span><span class="mi">20</span><span class="p">]</span>  <span class="c1">#numericalization</span>
+<span class="n">nums</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>TensorText([   2,    8,  171,    9,    0,   14,    9,   29,   16,  188, 1243,   33, 1244,   16,    0,   27,   24,    0,   24,   32])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that these number values refer to the vocab. Lets decode below</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">)</span> <span class="c1">#we can decode doing the following</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;xxbos xxmaj while the xxunk of the film is pretty lame ( ollie is xxunk with &#34; xxunk &#34; )&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Creating-Batches-for-Language-Model">Creating Batches for Language Model<a class="anchor-link" href="#Creating-Batches-for-Language-Model"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stream</span> <span class="o">=</span> <span class="s2">&quot;In this chapter, we will go back over the example of classifying movie reviews we studied in chapter 1 and dig deeper under the surface. First we will look at the processing steps necessary to convert text into numbers and how to customize it. By doing this, we&#39;ll have another example of the PreProcessor used in the data block API.</span><span class="se">\n</span><span class="s2">Then we will study how we build a language model and train it for a while.&quot;</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">tkn</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+<span class="n">bs</span><span class="p">,</span><span class="n">seq_len</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span><span class="mi">15</span>
+<span class="n">d_tokens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">seq_len</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">seq_len</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bs</span><span class="p">)])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d_tokens</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <tbody>
+    <tr>
+      <td>xxbos</td>
+      <td>xxmaj</td>
+      <td>in</td>
+      <td>this</td>
+      <td>chapter</td>
+      <td>,</td>
+      <td>we</td>
+      <td>will</td>
+      <td>go</td>
+      <td>back</td>
+      <td>over</td>
+      <td>the</td>
+      <td>example</td>
+      <td>of</td>
+      <td>classifying</td>
+    </tr>
+    <tr>
+      <td>movie</td>
+      <td>reviews</td>
+      <td>we</td>
+      <td>studied</td>
+      <td>in</td>
+      <td>chapter</td>
+      <td>1</td>
+      <td>and</td>
+      <td>dig</td>
+      <td>deeper</td>
+      <td>under</td>
+      <td>the</td>
+      <td>surface</td>
+      <td>.</td>
+      <td>xxmaj</td>
+    </tr>
+    <tr>
+      <td>first</td>
+      <td>we</td>
+      <td>will</td>
+      <td>look</td>
+      <td>at</td>
+      <td>the</td>
+      <td>processing</td>
+      <td>steps</td>
+      <td>necessary</td>
+      <td>to</td>
+      <td>convert</td>
+      <td>text</td>
+      <td>into</td>
+      <td>numbers</td>
+      <td>and</td>
+    </tr>
+    <tr>
+      <td>how</td>
+      <td>to</td>
+      <td>customize</td>
+      <td>it</td>
+      <td>.</td>
+      <td>xxmaj</td>
+      <td>by</td>
+      <td>doing</td>
+      <td>this</td>
+      <td>,</td>
+      <td>we</td>
+      <td>'ll</td>
+      <td>have</td>
+      <td>another</td>
+      <td>example</td>
+    </tr>
+    <tr>
+      <td>of</td>
+      <td>the</td>
+      <td>preprocessor</td>
+      <td>used</td>
+      <td>in</td>
+      <td>the</td>
+      <td>data</td>
+      <td>block</td>
+      <td>xxup</td>
+      <td>api</td>
+      <td>.</td>
+      <td>\n</td>
+      <td>xxmaj</td>
+      <td>then</td>
+      <td>we</td>
+    </tr>
+    <tr>
+      <td>will</td>
+      <td>study</td>
+      <td>how</td>
+      <td>we</td>
+      <td>build</td>
+      <td>a</td>
+      <td>language</td>
+      <td>model</td>
+      <td>and</td>
+      <td>train</td>
+      <td>it</td>
+      <td>for</td>
+      <td>a</td>
+      <td>while</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This batch is too big for our model, lets adjust it</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Minibatches">Minibatches<a class="anchor-link" href="#Minibatches"> </a></h2><p>Below is an example of 3 minibatches. Notice that in each following minibatch the nth row follows the previous minibatches nth row.Example,</p>
+<p>M1: xxbos   xxmaj   in  this    chapter<br />
+M2: ,   we  will    go  back<br />
+M3: over    the example of  classifying</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bs</span><span class="p">,</span><span class="n">seq_len</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">d_tokens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="o">+</span><span class="n">seq_len</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bs</span><span class="p">)])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d_tokens</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <tbody>
+    <tr>
+      <td>xxbos</td>
+      <td>xxmaj</td>
+      <td>in</td>
+      <td>this</td>
+      <td>chapter</td>
+    </tr>
+    <tr>
+      <td>movie</td>
+      <td>reviews</td>
+      <td>we</td>
+      <td>studied</td>
+      <td>in</td>
+    </tr>
+    <tr>
+      <td>first</td>
+      <td>we</td>
+      <td>will</td>
+      <td>look</td>
+      <td>at</td>
+    </tr>
+    <tr>
+      <td>how</td>
+      <td>to</td>
+      <td>customize</td>
+      <td>it</td>
+      <td>.</td>
+    </tr>
+    <tr>
+      <td>of</td>
+      <td>the</td>
+      <td>preprocessor</td>
+      <td>used</td>
+      <td>in</td>
+    </tr>
+    <tr>
+      <td>will</td>
+      <td>study</td>
+      <td>how</td>
+      <td>we</td>
+      <td>build</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bs</span><span class="p">,</span><span class="n">seq_len</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">d_tokens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="o">+</span><span class="n">seq_len</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">seq_len</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bs</span><span class="p">)])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d_tokens</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <tbody>
+    <tr>
+      <td>,</td>
+      <td>we</td>
+      <td>will</td>
+      <td>go</td>
+      <td>back</td>
+    </tr>
+    <tr>
+      <td>chapter</td>
+      <td>1</td>
+      <td>and</td>
+      <td>dig</td>
+      <td>deeper</td>
+    </tr>
+    <tr>
+      <td>the</td>
+      <td>processing</td>
+      <td>steps</td>
+      <td>necessary</td>
+      <td>to</td>
+    </tr>
+    <tr>
+      <td>xxmaj</td>
+      <td>by</td>
+      <td>doing</td>
+      <td>this</td>
+      <td>,</td>
+    </tr>
+    <tr>
+      <td>the</td>
+      <td>data</td>
+      <td>block</td>
+      <td>xxup</td>
+      <td>api</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>language</td>
+      <td>model</td>
+      <td>and</td>
+      <td>train</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bs</span><span class="p">,</span><span class="n">seq_len</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">d_tokens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">tokens</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="o">+</span><span class="mi">10</span><span class="p">:</span><span class="n">i</span><span class="o">*</span><span class="mi">15</span><span class="o">+</span><span class="mi">15</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bs</span><span class="p">)])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d_tokens</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <tbody>
+    <tr>
+      <td>over</td>
+      <td>the</td>
+      <td>example</td>
+      <td>of</td>
+      <td>classifying</td>
+    </tr>
+    <tr>
+      <td>under</td>
+      <td>the</td>
+      <td>surface</td>
+      <td>.</td>
+      <td>xxmaj</td>
+    </tr>
+    <tr>
+      <td>convert</td>
+      <td>text</td>
+      <td>into</td>
+      <td>numbers</td>
+      <td>and</td>
+    </tr>
+    <tr>
+      <td>we</td>
+      <td>'ll</td>
+      <td>have</td>
+      <td>another</td>
+      <td>example</td>
+    </tr>
+    <tr>
+      <td>.</td>
+      <td>\n</td>
+      <td>xxmaj</td>
+      <td>then</td>
+      <td>we</td>
+    </tr>
+    <tr>
+      <td>it</td>
+      <td>for</td>
+      <td>a</td>
+      <td>while</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nums200</span> <span class="o">=</span> <span class="n">toks200</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dl</span> <span class="o">=</span> <span class="n">LMDataLoader</span><span class="p">(</span><span class="n">nums200</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This dataloader takes care of creating the appropraite minibatches for us</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">first</span><span class="p">(</span><span class="n">dl</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([64, 72]), torch.Size([64, 72]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>64 is batchsize, 72 is the seq length</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;xxbos xxmaj while the xxunk of the film is pretty lame ( ollie is xxunk with &#34; xxunk &#34; )&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">20</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;xxmaj while the xxunk of the film is pretty lame ( ollie is xxunk with &#34; xxunk &#34; ) ,&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice that the label is offset by 1 word:This is what we want</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Language-Model-Using-DataBlock">Language Model Using DataBlock<a class="anchor-link" href="#Language-Model-Using-DataBlock"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_imdb</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">get_text_files</span><span class="p">,</span> <span class="n">folders</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;unsup&#39;</span><span class="p">])</span>
+
+<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="n">TextBlock</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">is_lm</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">get_items</span><span class="o">=</span><span class="n">get_imdb</span><span class="p">,</span> 
+    <span class="n">splitter</span><span class="o">=</span><span class="n">RandomSplitter</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls_lm</span> <span class="o">=</span> <span class="n">dblock</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">seq_len</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls_lm</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>text_</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>xxbos i strongly disagree with " xxunk " regarding xxmaj jim xxmaj belushi 's talent . i happen to like xxmaj belushi very much . xxmaj admittedly , i was skeptical when he first appeared on the scene , because i was such a xxup huge fan of his late brother xxmaj john . xxmaj but xxmaj jim has an on - screen charm that has gotten him very far -- and he has developed it well over the years</td>
+      <td>i strongly disagree with " xxunk " regarding xxmaj jim xxmaj belushi 's talent . i happen to like xxmaj belushi very much . xxmaj admittedly , i was skeptical when he first appeared on the scene , because i was such a xxup huge fan of his late brother xxmaj john . xxmaj but xxmaj jim has an on - screen charm that has gotten him very far -- and he has developed it well over the years .</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>is awesome . xxmaj there are some parts where you start to doubt whether the director intended to convey the message that showmanship is highly important thing in the future ( we will do such kind on corny sf things because we xxup can ) or is it simply over combining . xxmaj but the paranoia is there and feeling " out of joint " also . xxmaj good one . xxbos xxmaj first of all , the film is</td>
+      <td>awesome . xxmaj there are some parts where you start to doubt whether the director intended to convey the message that showmanship is highly important thing in the future ( we will do such kind on corny sf things because we xxup can ) or is it simply over combining . xxmaj but the paranoia is there and feeling " out of joint " also . xxmaj good one . xxbos xxmaj first of all , the film is very</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>show_batch denumericalize for us, but in reality its numericalized. See below</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls_lm</span><span class="o">.</span><span class="n">one_batch</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>LMTensorText([[    2,     8,   121,  ...,    42,    13,   190],
+        [   23,     9,   522,  ...,    13,  9706,   359],
+        [35022,    48,   121,  ...,    15,   159,    10],
+        ...,
+        [ 2202,     8, 22400,  ...,  6995,    13,   650],
+        [33649,     8,  2712,  ...,    14,    21,   898],
+        [   16,    36,    10,  ...,    28,    45,   734]], device=&#39;cuda:0&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Training">Training<a class="anchor-link" href="#Training"> </a></h2>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">language_model_learner</span><span class="p">(</span>
+    <span class="n">dls_lm</span><span class="p">,</span> <span class="n">AWD_LSTM</span><span class="p">,</span>  <span class="c1">#AWD_LSTM is a precreated architecture</span>
+    <span class="n">drop_mult</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">Perplexity</span><span class="p">()])</span><span class="o">.</span><span class="n">to_fp16</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>perplexity</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>4.120048</td>
+      <td>3.912788</td>
+      <td>0.299565</td>
+      <td>50.038246</td>
+      <td>11:39</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>30% accuracy is actually not bad</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Saving-and-Loading-Models">Saving and Loading Models<a class="anchor-link" href="#Saving-and-Loading-Models"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;1epoch&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;1epoch&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Further-training">Further training<a class="anchor-link" href="#Further-training"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2e-3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>perplexity</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3.893486</td>
+      <td>3.772820</td>
+      <td>0.317104</td>
+      <td>43.502548</td>
+      <td>12:37</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>3.820479</td>
+      <td>3.717197</td>
+      <td>0.323790</td>
+      <td>41.148880</td>
+      <td>12:30</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3.735622</td>
+      <td>3.659760</td>
+      <td>0.330321</td>
+      <td>38.851997</td>
+      <td>12:09</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>3.677086</td>
+      <td>3.624794</td>
+      <td>0.333960</td>
+      <td>37.516987</td>
+      <td>12:12</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>3.636646</td>
+      <td>3.601300</td>
+      <td>0.337017</td>
+      <td>36.645859</td>
+      <td>12:05</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>3.553636</td>
+      <td>3.584241</td>
+      <td>0.339355</td>
+      <td>36.026001</td>
+      <td>12:04</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>3.507634</td>
+      <td>3.571892</td>
+      <td>0.341353</td>
+      <td>35.583862</td>
+      <td>12:08</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>3.444101</td>
+      <td>3.565988</td>
+      <td>0.342194</td>
+      <td>35.374371</td>
+      <td>12:08</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>3.398597</td>
+      <td>3.566283</td>
+      <td>0.342647</td>
+      <td>35.384815</td>
+      <td>12:11</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>3.375563</td>
+      <td>3.568166</td>
+      <td>0.342528</td>
+      <td>35.451500</td>
+      <td>12:05</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">save_encoder</span><span class="p">(</span><span class="s1">&#39;finetuned&#39;</span><span class="p">)</span> <span class="c1">#This saves the model without the final layer</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Testing-model">Testing model<a class="anchor-link" href="#Testing-model"> </a></h2><p>We can now test our model. Because our model is made to predict the next word, it can generate text given any input. This generated text is the prediction of the model.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TEXT</span> <span class="o">=</span> <span class="s2">&quot;I liked this movie because&quot;</span>
+<span class="n">N_WORDS</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">N_SENTENCES</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#lets generate 2 sentences</span>
+
+                                        <span class="c1">#randomness</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="p">[</span><span class="n">learn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">N_WORDS</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span> 
+         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_SENTENCES</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">preds</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>i liked this movie because of its story and characters . The story line was very strong , very good for a sci - fi film . The main character , Alucard , was very well developed and brought the whole story
+i liked this movie because i like the idea of the premise of the movie , the ( very ) convenient virus ( which , when you have to kill a few people , the &#34; evil &#34; machine has to be used to protect
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Text-Classifier">Text Classifier<a class="anchor-link" href="#Text-Classifier"> </a></h2><p>Now lets create a text classifier, which can classify if the text is positive or negative. For this we will be using our pretrained model that we saved above.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Classifier-DataBlock">Classifier DataBlock<a class="anchor-link" href="#Classifier-DataBlock"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="p">(</span><span class="n">TextBlock</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">vocab</span><span class="o">=</span><span class="n">dls_lm</span><span class="o">.</span><span class="n">vocab</span><span class="p">),</span><span class="n">CategoryBlock</span><span class="p">),</span>
+    <span class="n">get_y</span> <span class="o">=</span> <span class="n">parent_label</span><span class="p">,</span>
+    <span class="n">get_items</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">get_text_files</span><span class="p">,</span> <span class="n">folders</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]),</span>
+    <span class="n">splitter</span><span class="o">=</span><span class="n">GrandparentSplitter</span><span class="p">(</span><span class="n">valid_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span> <span class="c1">#splits via folder name</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls_clas</span> <span class="o">=</span> <span class="n">dblock</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">seq_len</span><span class="o">=</span><span class="mi">72</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls_clas</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>xxbos xxmaj match 1 : xxmaj tag xxmaj team xxmaj table xxmaj match xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley vs xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit xxmaj bubba xxmaj ray and xxmaj spike xxmaj dudley started things off with a xxmaj tag xxmaj team xxmaj table xxmaj match against xxmaj eddie xxmaj guerrero and xxmaj chris xxmaj benoit . xxmaj according to the rules of the match , both opponents have to go through tables in order to get the win . xxmaj benoit and xxmaj guerrero heated up early on by taking turns hammering first xxmaj spike and then xxmaj bubba xxmaj ray . a xxmaj german xxunk by xxmaj benoit to xxmaj bubba took the wind out of the xxmaj dudley brother . xxmaj spike tried to help his brother , but the referee restrained him while xxmaj benoit and xxmaj guerrero</td>
+      <td>pos</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>xxbos * ! ! - xxup spoilers - ! ! * \n\n xxmaj before i begin this , let me say that i have had both the advantages of seeing this movie on the big screen and of having seen the " authorized xxmaj version " of this movie , remade by xxmaj stephen xxmaj king , himself , in 1997 . \n\n xxmaj both advantages made me appreciate this version of " the xxmaj shining , " all the more . \n\n xxmaj also , let me say that xxmaj i 've read xxmaj mr . xxmaj king 's book , " the xxmaj shining " on many occasions over the years , and while i love the book and am a huge fan of his work , xxmaj stanley xxmaj kubrick 's retelling of this story is far more compelling … and xxup scary . \n\n xxmaj kubrick</td>
+      <td>pos</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>xxbos xxmaj raising xxmaj victor xxmaj vargas : a xxmaj review \n\n xxmaj you know , xxmaj raising xxmaj victor xxmaj vargas is like sticking your hands into a big , steaming bowl of oatmeal . xxmaj it 's warm and gooey , but you 're not sure if it feels right . xxmaj try as i might , no matter how warm and gooey xxmaj raising xxmaj victor xxmaj vargas became i was always aware that something did n't quite feel right . xxmaj victor xxmaj vargas suffers from a certain overconfidence on the director 's part . xxmaj apparently , the director thought that the ethnic backdrop of a xxmaj latino family on the lower east side , and an idyllic storyline would make the film critic proof . xxmaj he was right , but it did n't fool me . xxmaj raising xxmaj victor xxmaj vargas is</td>
+      <td>neg</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nums_samp</span> <span class="o">=</span> <span class="n">toks200</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">#lets grab some reviews</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nums_samp</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#10) [403,176,151,63,185,905,417,97,183,397]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice they vary in lengths. This can be a problem, however, FastAI DataBlock takes care of it for us by using padding</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">text_classifier_learner</span><span class="p">(</span><span class="n">dls_clas</span><span class="p">,</span> <span class="n">AWD_LSTM</span><span class="p">,</span> <span class="n">drop_mult</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+                                <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span><span class="o">.</span><span class="n">to_fp16</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="s1">&#39;finetuned&#39;</span><span class="p">)</span> <span class="c1">#lets load our model from before</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fine-Tuning-the-Classifier">Fine-Tuning the Classifier<a class="anchor-link" href="#Fine-Tuning-the-Classifier"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2e-2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.347427</td>
+      <td>0.184480</td>
+      <td>0.929320</td>
+      <td>00:33</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>Notice how quickly it trained:This is the benefit of using pretrained models and only fitting on the final layer.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Refining">Refining<a class="anchor-link" href="#Refining"> </a></h3><p>Lets refine the model by training some more. For NLP it's better to only freeze a couple of layers at a time, rather than the entire thing. So, below we can do this by calling <strong>.freeze_to(-2)</strong>, which freeze all except the last two parameter groups:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">freeze_to</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mf">1e-2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.6</span><span class="o">**</span><span class="mi">4</span><span class="p">),</span><span class="mf">1e-2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.247763</td>
+      <td>0.171683</td>
+      <td>0.934640</td>
+      <td>00:37</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then we can unfreeze a bit more, and continue training:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">freeze_to</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mf">5e-3</span><span class="o">/</span><span class="p">(</span><span class="mf">2.6</span><span class="o">**</span><span class="mi">4</span><span class="p">),</span><span class="mf">5e-3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.193377</td>
+      <td>0.156696</td>
+      <td>0.941200</td>
+      <td>00:45</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And finally, the whole model!</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mf">1e-3</span><span class="o">/</span><span class="p">(</span><span class="mf">2.6</span><span class="o">**</span><span class="mi">4</span><span class="p">),</span><span class="mf">1e-3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.172888</td>
+      <td>0.153770</td>
+      <td>0.943120</td>
+      <td>01:01</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.161492</td>
+      <td>0.155567</td>
+      <td>0.942640</td>
+      <td>00:57</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>This accuracy is very good!</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h2><p>Overall, natural language models are very powerful and benefitial. Hopefully, you learned how to create a model that can generate text, and more importantly, can be used to classify text as well (Transfer learning).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Questionnaire">Questionnaire<a class="anchor-link" href="#Questionnaire"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><strong>What is "self-supervised learning"?</strong><br />
+Learning where model has no labels. </li>
+<li><strong>What is a "language model"?</strong><br />
+A language model is a model that tries to predict the next word in a text.</li>
+<li><strong>Why is a language model considered self-supervised?</strong><br />
+Because it does not require any labels needed to learn. </li>
+<li><strong>What are self-supervised models usually used for?</strong><br />
+Often they are used as pre-trained model for transfer learning. </li>
+<li><strong>Why do we fine-tune language models?</strong><br />
+By finetuning (final layers) we can fit a model to our data. Note, this assumes the data being fit on is similer. </li>
+<li><strong>What are the three steps to create a state-of-the-art text classifier?</strong><br />
+Train a language model<br />
+Finetune language model on classification dataset<br />
+Finetune further as classifier </li>
+<li><strong>How do the 50,000 unlabeled movie reviews help us create a better text classifier for the IMDb dataset?</strong><br />
+It has been trained to predict the next word: To do this, the model understands the language (Ex: sentiment).</li>
+<li><strong>What are the three steps to prepare your data for a language model?</strong><br />
+Tokenization<br />
+Numericalization<br />
+DataLoader</li>
+<li><strong>What is "tokenization"? Why do we need it?</strong><br />
+Tokenization splits words into a list: However, it's not that simple as it is vary of punctuations, syntax, etc.</li>
+<li><strong>Name three different approaches to tokenization.</strong><br />
+Word-based tokenization<br />
+Subword-based tokenization<br />
+Character-based tokenization</li>
+<li><strong>What is <code>xxbos</code>?</strong><br />
+Beginning of text</li>
+<li><strong>List four rules that fastai applies to text during tokenization.</strong><br />
+xxrep, xxbox, xxcap, xxeos</li>
+<li><strong>Why are repeated characters replaced with a token showing the number of repetitions and the character that's repeated?</strong><br />
+We can expect that repeated characters have special or different meaning than just a single character: Hence, why it is better to use a token to repersent this distinction.</li>
+<li><strong>What is "numericalization"?</strong><br />
+The mapping of values to vocab</li>
+<li><strong>Why might there be words that are replaced with the "unknown word" token?</strong><br />
+Such words make the embedding matrix far too large and increase memory usage.</li>
+<li><strong>With a batch size of 64, the first row of the tensor representing the first batch contains the first 64 tokens for the dataset. What does the second row of that tensor contain? What does the first row of the second batch contain? (Careful—students often get this one wrong! Be sure to check your answer on the book's website.)</strong><br />
+Minibatch of the nth row follows the previous minibatches nth row.</li>
+<li><strong>Why do we need padding for text classification? Why don't we need it for language modeling?</strong><br />
+Padding is needed because each text is of different sizes. It is not required for language modeling as the documents are all concatenated.</li>
+<li><strong>What does an embedding matrix for NLP contain? What is its shape?</strong><br />
+It contains vector representations of all tokens in the vocabulary. The embedding matrix has the size vocab_size x embedding_size.</li>
+<li><strong>What is "perplexity"?</strong><br />
+Exponential of the loss.</li>
+<li><strong>Why do we have to pass the vocabulary of the language model to the classifier data block?</strong><br />
+We need the vocab correspondence of tokens to index to remain the same because we used the pretrained language model.</li>
+<li><strong>What is "gradual unfreezing"?</strong><br />
+The unfreezing of one layer at a time and fine-tuning.</li>
+<li><strong>Why is text generation always likely to be ahead of automatic identification of machine-generated texts?</strong><br />
+The text generation model could be made so that it competes with the identification model. Eventually, the text generation will produce text that the identification model cannot identify as being machine-generated.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Further-Research">Further Research<a class="anchor-link" href="#Further-Research"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><strong>See what you can learn about language models and disinformation. What are the best language models today? Take a look at some of their outputs. Do you find them convincing? How could a bad actor best use such a model to create conflict and uncertainty?</strong>  </li>
+<li><strong>Given the limitation that models are unlikely to be able to consistently recognize machine-generated texts, what other approaches may be needed to handle large-scale disinformation campaigns that leverage deep learning?</strong>  </li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/PasteBlogs/2021/07/21/Lesson10-nlp.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/PasteBlogs/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/PasteBlogs/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
