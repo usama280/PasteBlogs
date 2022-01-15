@@ -39,7 +39,7 @@ baseurl: "/PasteBlogs" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    linkedin: usama-nad3em
+    linkedin: fastdotai
     github: usama280
 
 # Set this to true to get LaTeX math equation support
