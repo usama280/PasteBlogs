@@ -1,0 +1,2100 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Title | PasteBlogs</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Title" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Machine Learning blogs regarding my work with PyTorch and FastAI." />
+<meta property="og:description" content="Machine Learning blogs regarding my work with PyTorch and FastAI." />
+<link rel="canonical" href="https://usama280.github.io/PasteBlogs/2022/01/14/a_foundations.html" />
+<meta property="og:url" content="https://usama280.github.io/PasteBlogs/2022/01/14/a_foundations.html" />
+<meta property="og:site_name" content="PasteBlogs" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-14T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Machine Learning blogs regarding my work with PyTorch and FastAI.","url":"https://usama280.github.io/PasteBlogs/2022/01/14/a_foundations.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://usama280.github.io/PasteBlogs/2022/01/14/a_foundations.html"},"headline":"Title","dateModified":"2022-01-14T00:00:00-06:00","datePublished":"2022-01-14T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/PasteBlogs/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://usama280.github.io/PasteBlogs/feed.xml" title="PasteBlogs" /><link rel="shortcut icon" type="image/x-icon" href="/PasteBlogs/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/PasteBlogs/">PasteBlogs</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/PasteBlogs/about/">About Me</a><a class="page-link" href="/PasteBlogs/search/">Search</a><a class="page-link" href="/PasteBlogs/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Title</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-14T00:00:00-06:00" itemprop="datePublished">
+        Jan 14, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/usama280/PasteBlogs/tree/master/_notebooks/05a_foundations.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/PasteBlogs/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/usama280/PasteBlogs/master?filepath=_notebooks%2F05a_foundations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/usama280/PasteBlogs/blob/master/_notebooks/05a_foundations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/PasteBlogs/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/05a_foundations.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Callbacks">Callbacks<a class="anchor-link" href="#Callbacks"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Callbacks-as-GUI-events">Callbacks as GUI events<a class="anchor-link" href="#Callbacks-as-GUI-events"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">o</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>From the <a href="https://ipywidgets.readthedocs.io/en/stable/examples/Widget%20Events.html">ipywidget docs</a>:</p>
+<ul>
+<li><em>the button widget is used to handle mouse clicks. The on_click method of the Button can be used to register function to be called when the button is clicked</em></li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Click me&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hi
+hi
+hi
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>NB: When callbacks are used in this way they are often called "events".</em></p>
+<p>Did you know what you can create interactive apps in Jupyter with these widgets? Here's an example from <a href="https://plot.ly/python/widget-app/">plotly</a>:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/12302455/16637308/4e476280-43ac-11e6-9fd3-ada2c9506ee1.gif" alt="" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Creating-your-own-callback">Creating your own callback<a class="anchor-link" href="#Creating-your-own-callback"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slow_calculation</span><span class="p">():</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Lets pass a call back</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slow_calculation</span><span class="p">(</span><span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cb</span><span class="p">:</span> <span class="n">cb</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_progress</span><span class="p">(</span><span class="n">epoch</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Awesome! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">show_progress</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Awesome! We&#39;ve finished epoch 0!
+Awesome! We&#39;ve finished epoch 1!
+Awesome! We&#39;ve finished epoch 2!
+Awesome! We&#39;ve finished epoch 3!
+Awesome! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lambdas-and-partials">Lambdas and partials<a class="anchor-link" href="#Lambdas-and-partials"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Awesome! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Awesome! We&#39;ve finished epoch 0!
+Awesome! We&#39;ve finished epoch 1!
+Awesome! We&#39;ve finished epoch 2!
+Awesome! We&#39;ve finished epoch 3!
+Awesome! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">show_progress</span><span class="p">(</span><span class="n">exclamation</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exclamation</span><span class="si">}</span><span class="s2">! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">show_progress</span><span class="p">(</span><span class="s2">&quot;OK I guess&quot;</span><span class="p">,</span> <span class="n">o</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>OK I guess! We&#39;ve finished epoch 0!
+OK I guess! We&#39;ve finished epoch 1!
+OK I guess! We&#39;ve finished epoch 2!
+OK I guess! We&#39;ve finished epoch 3!
+OK I guess! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_show_progress</span><span class="p">(</span><span class="n">exclamation</span><span class="p">):</span>
+    <span class="n">_inner</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">epoch</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exclamation</span><span class="si">}</span><span class="s2">! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_inner</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">make_show_progress</span><span class="p">(</span><span class="s2">&quot;Nice!&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Nice!! We&#39;ve finished epoch 0!
+Nice!! We&#39;ve finished epoch 1!
+Nice!! We&#39;ve finished epoch 2!
+Nice!! We&#39;ve finished epoch 3!
+Nice!! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_show_progress</span><span class="p">(</span><span class="n">exclamation</span><span class="p">):</span>
+    <span class="c1"># Leading &quot;_&quot; is generally understood to be &quot;private&quot;</span>
+    <span class="k">def</span> <span class="nf">_inner</span><span class="p">(</span><span class="n">epoch</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exclamation</span><span class="si">}</span><span class="s2">! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_inner</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">make_show_progress</span><span class="p">(</span><span class="s2">&quot;Nice!&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Nice!! We&#39;ve finished epoch 0!
+Nice!! We&#39;ve finished epoch 1!
+Nice!! We&#39;ve finished epoch 2!
+Nice!! We&#39;ve finished epoch 3!
+Nice!! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Can also just simply make use of partial()</strong></p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">show_progress</span><span class="p">,</span> <span class="s2">&quot;OK I guess&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>OK I guess! We&#39;ve finished epoch 0!
+OK I guess! We&#39;ve finished epoch 1!
+OK I guess! We&#39;ve finished epoch 2!
+OK I guess! We&#39;ve finished epoch 3!
+OK I guess! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">show_progress</span><span class="p">,</span> <span class="s2">&quot;OK I guess&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Callbacks-as-callable-classes">Callbacks as callable classes<a class="anchor-link" href="#Callbacks-as-callable-classes"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ProgressShowingCallback</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclamation</span><span class="o">=</span><span class="s2">&quot;Awesome&quot;</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">exclamation</span> <span class="o">=</span> <span class="n">exclamation</span>
+        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">exclamation</span><span class="si">}</span><span class="s2">! We&#39;ve finished epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cb</span> <span class="o">=</span> <span class="n">ProgressShowingCallback</span><span class="p">(</span><span class="s2">&quot;Just super&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">cb</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Just super! We&#39;ve finished epoch 0!
+Just super! We&#39;ve finished epoch 1!
+Just super! We&#39;ve finished epoch 2!
+Just super! We&#39;ve finished epoch 3!
+Just super! We&#39;ve finished epoch 4!
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Multiple-callback-funcs;-*args-and-**kwargs">Multiple callback funcs; <code>*args</code> and <code>**kwargs</code><a class="anchor-link" href="#Multiple-callback-funcs;-*args-and-**kwargs"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;args: </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s2">; kwargs: </span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">thing1</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>args: (3, &#39;a&#39;); kwargs: {&#39;thing1&#39;: &#39;hello&#39;}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>NB: We've been guilty of over-using kwargs in fastai - it's very convenient for the developer, but is annoying for the end-user unless care is taken to ensure docs show all kwargs too. kwargs can also hide bugs (because it might not tell you about a typo in a param name). In <a href="https://www.r-project.org/">R</a> there's a very similar issue (R uses <code>...</code> for the same thing), and matplotlib uses kwargs a lot too.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slow_calculation</span><span class="p">(</span><span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cb</span><span class="p">:</span> <span class="n">cb</span><span class="o">.</span><span class="n">before_calc</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cb</span><span class="p">:</span> <span class="n">cb</span><span class="o">.</span><span class="n">after_calc</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PrintStepCallback</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">before_calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;About to start&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">after_calc</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done step&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">PrintStepCallback</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>About to start
+Done step
+About to start
+Done step
+About to start
+Done step
+About to start
+Done step
+About to start
+Done step
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PrintStatusCallback</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">pass</span>
+    <span class="k">def</span> <span class="nf">before_calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;About to start: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">after_calc</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">PrintStatusCallback</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>About to start: 0
+After 0: 0
+About to start: 1
+After 1: 1
+About to start: 2
+After 2: 5
+About to start: 3
+After 3: 14
+About to start: 4
+After 4: 30
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>30</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Modifying-behavior">Modifying behavior<a class="anchor-link" href="#Modifying-behavior"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">slow_calculation</span><span class="p">(</span><span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cb</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span><span class="s1">&#39;before_calc&#39;</span><span class="p">):</span> <span class="n">cb</span><span class="o">.</span><span class="n">before_calc</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cb</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cb</span><span class="p">,</span><span class="s1">&#39;after_calc&#39;</span><span class="p">):</span> <span class="c1">#hasattr checks if the method is defined</span>
+            <span class="k">if</span> <span class="n">cb</span><span class="o">.</span><span class="n">after_calc</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span> <span class="c1">#check return calue</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stopping early&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">PrintAfterCallback</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">after_calc</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">val</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">slow_calculation</span><span class="p">(</span><span class="n">PrintAfterCallback</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>After 0: 0
+After 1: 1
+After 2: 5
+After 3: 14
+stopping early
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>14</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SlowCalculator</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">cb</span><span class="p">,</span><span class="mi">0</span>
+    
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">:</span> <span class="k">return</span> 
+        
+        <span class="n">cb</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="p">,</span><span class="n">cb_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cb</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="n">cb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span> <span class="c1">#pass self</span>
+
+    <span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="s1">&#39;before_calc&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="s1">&#39;after_calc&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stopping early&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ModifyingCallback</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">after_calc</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span> <span class="c1">#calc = self</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">calc</span><span class="o">.</span><span class="n">res</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">calc</span><span class="o">.</span><span class="n">res</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">calc</span><span class="o">.</span><span class="n">res</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">:</span> <span class="n">calc</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">res</span><span class="o">*</span><span class="mi">2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">calculator</span> <span class="o">=</span> <span class="n">SlowCalculator</span><span class="p">(</span><span class="n">ModifyingCallback</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">calculator</span><span class="o">.</span><span class="n">calc</span><span class="p">()</span>
+<span class="n">calculator</span><span class="o">.</span><span class="n">res</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>After 0: 0
+After 1: 1
+After 2: 6
+After 3: 15
+stopping early
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>15</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="__dunder__-thingies"><code>__dunder__</code> thingies<a class="anchor-link" href="#__dunder__-thingies"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Anything that looks like <code>__this__</code> is, in some way, <em>special</em>. Python, or some library, can define some functions that they will call at certain documented times. For instance, when your class is setting up a new object, python will call <code>__init__</code>. These are defined as part of the python <a href="https://docs.python.org/3/reference/datamodel.html#object.__init__">data model</a>.</p>
+<p>For instance, if python sees <code>+</code>, then it will call the special method <code>__add__</code>. If you try to display an object in Jupyter (or lots of other places in Python) it will call <code>__repr__</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SloppyAdder</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="o">=</span><span class="n">o</span>
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">SloppyAdder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">o</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">SloppyAdder</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">SloppyAdder</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.01</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Special methods you should probably know about (see data model link above) are:</p>
+<ul>
+<li><code>__getitem__</code></li>
+<li><code>__getattr__</code></li>
+<li><code>__setattr__</code></li>
+<li><code>__del__</code></li>
+<li><code>__init__</code></li>
+<li><code>__new__</code></li>
+<li><code>__enter__</code></li>
+<li><code>__exit__</code></li>
+<li><code>__len__</code></li>
+<li><code>__repr__</code></li>
+<li><code>__str__</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variance-and-stuff">Variance and stuff<a class="anchor-link" href="#Variance-and-stuff"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variance">Variance<a class="anchor-link" href="#Variance"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Variance is the average of how far away each data point is from the mean. E.g.:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">4.</span><span class="p">,</span><span class="mi">18</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mean</span><span class="p">();</span> <span class="n">m</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(6.2500)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(0.)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Oops. We can't do that. Because by definition the positives and negatives cancel out. So we can fix that in one of (at least) two ways:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1">#Varience</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(47.1875)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1">#Mean abs deviation</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(5.8750)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But the first of these is now a totally different scale, since we squared. So let's undo that at the end.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="c1">#Standard Dev.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(6.8693)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>They're still different. Why?</p>
+<p>Note that we have one outlier (<code>18</code>). In the version where we square everything, it makes that much bigger than everything else.</p>
+<p><code>(t-m).pow(2).mean()</code> is refered to as <strong>variance</strong>. It's a measure of how spread out the data is, and is particularly sensitive to outliers.</p>
+<p>When we take the sqrt of the variance, we get the <strong>standard deviation</strong>. Since it's on the same kind of scale as the original data, it's generally more interpretable. However, since <code>sqrt(1)==1</code>, it doesn't much matter which we use when talking about <em>unit variance</em> for initializing neural nets.</p>
+<p><code>(t-m).abs().mean()</code> is referred to as the <strong>mean absolute deviation</strong>. It isn't used nearly as much as it deserves to be, because mathematicians don't like how awkward it is to work with. But that shouldn't stop us, because we have computers and stuff.</p>
+<p>Here's a useful thing to note about variance:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor(47.1875), tensor(47.1875))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see why these are equal if you want to work thru the algebra. Or not.</p>
+<p>But, what's important here is that the latter is generally much easier to work with. In particular, you only have to track two things: the sum of the data, and the sum of squares of the data. Whereas in the first form you actually have to go thru all the data twice (once to calculate the mean, once to calculate the differences).</p>
+<p>Let's go steal the LaTeX from <a href="https://en.wikipedia.org/wiki/Variance">Wikipedia</a>:</p>
+<p>
+$$\operatorname{E}\left[X^2 \right] - \operatorname{E}[X]^2$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Covariance-and-correlation">Covariance and correlation<a class="anchor-link" href="#Covariance-and-correlation"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here's how Wikipedia defines covariance:</p>
+<p>
+$$\operatorname{cov}(X,Y) = \operatorname{E}{\big[(X - \operatorname{E}[X])(Y - \operatorname{E}[Y])\big]}$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([ 1.,  2.,  4., 18.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's see that in code. So now we need two vectors.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">*</span><span class="mi">2</span>
+<span class="n">u</span> <span class="o">*=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="o">+</span><span class="mf">0.95</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prod</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">t</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">u</span><span class="o">.</span><span class="n">mean</span><span class="p">());</span> <span class="n">prod</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([ 54.7783,  32.1763,  11.1104, 269.5783])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prod</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(91.9108)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="n">t</span><span class="o">-</span><span class="n">t</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="n">v</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(-4.0104)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's generally more conveniently defined like so:</p>
+<p>
+$$\operatorname{E}\left[X Y\right] - \operatorname{E}\left[X\right] \operatorname{E}\left[Y\right]$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="n">v</span><span class="o">.</span><span class="n">mean</span><span class="p">();</span> <span class="n">cov</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(3.3606)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>From now on, you're not allowed to look at an equation (or especially type it in LaTeX) without also typing it in Python and actually calculating some values. Ideally, you should also plot some values.</p>
+<p>Finally, here is the Pearson correlation coefficient:</p>
+<p>
+$$\rho_{X,Y}= \frac{\operatorname{cov}(X,Y)}{\sigma_X \sigma_Y}$$
+</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cov</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(0.2978)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's just a scaled version of the same thing. Question: <em>Why is it scaled by standard deviation, and not by variance or mean or something else?</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Softmax">Softmax<a class="anchor-link" href="#Softmax"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here's our final <code>logsoftmax</code> definition:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">log_softmax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>which is:</p>
+$$\hbox{logsoftmax(x)}_{i} = x_{i} - \log \sum_{j} e^{x_{j}}$$<p></p>
+<p>And our cross entropy loss is:
+
+$$-\log(p_{i})$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Browsing-source-code">Browsing source code<a class="anchor-link" href="#Browsing-source-code"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Jump to tag/symbol by with (with completions)</li>
+<li>Jump to current tag</li>
+<li>Jump to library tags</li>
+<li>Go back</li>
+<li>Search</li>
+<li>Outlining / folding</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/PasteBlogs/2022/01/14/a_foundations.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/PasteBlogs/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/PasteBlogs/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Machine Learning blogs regarding my work with PyTorch and FastAI.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/usama280" target="_blank" title="usama280"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/usama-nad3em" target="_blank" title="usama-nad3em"><svg class="svg-icon grey"><use xlink:href="/PasteBlogs/assets/minima-social-icons.svg#linkedin"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
